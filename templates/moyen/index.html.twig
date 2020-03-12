@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <ul class="nav justify-content-end bg-dark">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('moyen') }}">{{ 'Accueil'|trans }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('matières')}}">Matières</a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="card bg-light" style="padding:20px;">
+            {{ form(form) }}
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-around">
+                <p>matière</p><p>matière</p><p>coefficient</p><p>date d'ajout</p>
+            </li>
+            {% if notes|length > 0 %}
+                {% for note in notes %}
+                    <li class="list-group-item d-flex justify-content-around">
+                        <p>{{ note.note }}</p><p>{{ note.matiere.name }}</p><p>{{ note.matiere.coef }}</p><p>{{ note.createAt|date('d/m/Y h:m:s') }}</p>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item">il n'y a pas encore de note entrée</li>
+            {% endif %}
+            <li class="list-group-item d-flex justify-content-between">
+               <p>Moyenne:</p><p>{{ moyen }}</p>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

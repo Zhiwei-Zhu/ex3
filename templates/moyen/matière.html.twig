@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Matière{% endblock %}
+
+{% block body %}
+    <ul class="nav justify-content-end bg-dark">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('moyen') }}">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('matières')}}">Matières</a>
+        </li>
+    </ul>
+<div class="container">
+    <div class="card bg-light" style="padding:20px;">
+        {{ form(form) }}
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between">
+            <p>matière</p><p>coefficient</p>
+        </li>
+        {% if matieres|length > 0 %}
+        {% for matiere in matieres %}
+            <li class="list-group-item d-flex justify-content-between">
+                <a href="{{ path('update',{id: matiere.id}) }}">{{ matiere.name }}</a><p>{{ matiere.coef }}</p>
+            </li>
+        {% endfor %}
+        {% else %}
+        <li class="list-group-item">il n'y a pas encore de matière entrée</li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page {{ matiere.name }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('moyen') }}">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('matières')}}">Matières</a>
+        </li>
+    </ul>
+    <div class="card bg-light" style="padding: 20px">
+        <div class="row d-flex justify-content-between container">
+            <a href="{{ path('matières') }}" class="btn btn-primary col-1">Retour</a>
+            <a href="{{ path('remove',{id: matiere.id}) }}" class="btn btn-danger col-1 " alt="supprimer">X</a>
+        </div>
+        {{ form(form) }}
+    </div>
+</div>
+{% endblock %}
